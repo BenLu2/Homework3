@@ -8,7 +8,7 @@ function generatePassword() {
   var numbArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specialCharacterArray = ["@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"];
   var charactersLength = length;
-
+//force error message if the password length is not between the desired range
   var length = window.prompt("Please enter the length of the password between 8 and 128:");
   if (length > 128 || length < 8)
   {
@@ -19,27 +19,25 @@ function generatePassword() {
   var isLower = confirm ("Is lower case required?");
   var isNumber = confirm("Is number required?");
   var isSpecial = confirm("Is special character required?");
-
   var finalResult = [];
   var userArray = [];
-//Object, an object key and value pairs 
-// JSON, javascript object notation, a file that has an array of objects
-if (isNumber){
-  finalResult = finalResult.concat(numbArray);
-}
+
+
+// use if statement to check the input result
 
 if (isUpper){
   finalResult = finalResult.concat(upperCaseArray);
 }
-
 if (isLower){
   finalResult = finalResult.concat(lowerCaseArray);
+}
+if (isNumber){
+  finalResult = finalResult.concat(numbArray);
 }
 
 if (isSpecial){
   finalResult = finalResult.concat(specialCharacterArray);
 }
-console.log(finalResult)
 
 for (var i = 0; i < length; i++) {     
   userArray.push (finalResult[Math.floor(Math.random() * finalResult.length)]); 
@@ -47,7 +45,6 @@ for (var i = 0; i < length; i++) {
   return userArray.join("") ;
 }
 
-// console.log(generatePassword(length));
 
 // Write password to the #password input
 function writePassword() {
@@ -56,7 +53,6 @@ function writePassword() {
 
   passwordText.value = password;
 }
-
 
 
 // Add event listener to generate button
